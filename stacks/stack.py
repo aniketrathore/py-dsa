@@ -6,10 +6,15 @@ class Node:
 
 
 class SLLStack:
-    """Singly Link List based Stack implementation"""
+    """Stack implementation using Singly Linked List """
 
     def __init__(self):
         self.head = None
+
+    def top(self):
+        if self.head:
+            return self.head.item
+        print("Stack Underflow.")
 
     def push(self, item):
         if self.head:
@@ -22,22 +27,16 @@ class SLLStack:
     def pop(self):
         if self.head:
             prev_node = self.head
-            self.head = self.head.prev
-            prev_node.next = None
+            self.head = prev_node.prev
             return prev_node.item
-        print("Stack Underflow.")
-
-    def top(self):
-        if self.head:
-            print(self.head.item)
         else:
             print("Stack Underflow.")
 
-    def display_stack(self):
-        if self.head:
-            iter_node = self.head
-            while iter_node:
-                print(iter_node.item)
-                iter_node = iter_node.prev
-        else:
-            print("Stack Underflow.")
+    def display(self):
+        iter_node = self.head
+        while iter_node:
+            print(iter_node.item)
+            iter_node = iter_node.prev
+
+    def is_empty(self):
+        return True if self.head else False

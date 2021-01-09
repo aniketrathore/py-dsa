@@ -1,42 +1,50 @@
 class Node:
-
-    def __init__(self, item):
-        self.item = item
+    def __init__(self, value):
+        self.value = value
         self.prev = None
 
 
-class SLLStack:
-    """Stack implementation using Singly Linked List """
-
+class Stack:
     def __init__(self):
         self.head = None
+        self.size = 0
 
-    def top(self):
+    def push(self, value):
         if self.head:
-            return self.head.item
-        print("Stack Underflow.")
-
-    def push(self, item):
-        if self.head:
-            new_node = Node(item=item)
+            new_node = Node(value=value)
             new_node.prev = self.head
             self.head = new_node
         else:
-            self.head = Node(item=item)
+            self.head = Node(value=value)
+        self.size += 1
+        print("Value Pushed.")
 
     def pop(self):
         if self.head:
-            prev_node = self.head
-            self.head = prev_node.prev
-            return prev_node.item
+            prev_node = self.head.prev
+            self.head = prev_node
+            self.size -= 1
+            print("Value Popped")
         else:
-            print("Stack Underflow.")
+            print("Stack Is Empty.")
 
-    def display(self):
-        iter_node = self.head
-        while iter_node:
-            print(iter_node.item)
-            iter_node = iter_node.prev
+    def top(self):
+        if self.head:
+            print(self.head.value)
+        else:
+            print("Stack Is Empty.")
+
+    def get_size(self):
+        print(self.size)
 
     def is_empty(self):
-        return True if self.head else False
+        print(False if self.head else True)
+
+    def display(self):
+        iterator = self.head
+        while iterator:
+            print(iterator.value)
+            iterator = iterator.prev
+
+    def get_max(self):
+        """To be implemented"""
